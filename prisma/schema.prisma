@@ -1,0 +1,89 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String?
+  email     String   @unique
+  password  String
+  role      UserRole @default(ADMIN)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Customer {
+  id        String    @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  bookings  Booking[]
+  inquiries Inquiry[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Package {
+  id          String    @id @default(cuid())
+  title       String
+  slug        String    @unique
+  description String
+  price       Float
+  duration    String?
+  location    String?
+  isActive    Boolean   @default(true)
+  bookings    Booking[]
+  inquiries   Inquiry[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Booking {
+  id          String        @id @default(cuid())
+  customerId  String
+  packageId   String
+  travelDate  DateTime?
+  persons     Int           @default(1)
+  status      BookingStatus @default(PENDING)
+  totalAmount Float?
+  notes       String?
+  customer    Customer      @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  package     Package       @relation(fields: [packageId], references: [id], onDelete: Cascade)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model Inquiry {
+  id         String        @id @default(cuid())
+  customerId String
+  packageId  String?
+  message    String
+  status     InquiryStatus @default(NEW)
+  customer   Customer      @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  package    Package?      @relation(fields: [packageId], references: [id], onDelete: SetNull)
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+}
+
+enum UserRole {
+  ADMIN
+  STAFF
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}
+
+enum InquiryStatus {
+  NEW
+  CONTACTED
+  CLOSED
+}
