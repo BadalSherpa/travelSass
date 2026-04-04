@@ -1,32 +1,58 @@
 import type { ReactNode } from 'react'
 import Link from 'next/link'
+import { auth } from '@/auth'
+import LogoutButton from '@/components/admin/LogoutButton'
 
 type AdminLayoutProps = {
   children: ReactNode
 }
 
-const navItems = [
+const allNavItems = [
   { label: 'Dashboard', href: '/admin' },
   { label: 'Packages', href: '/admin/packages' },
   { label: 'Bookings', href: '/admin/bookings' },
   { label: 'Customers', href: '/admin/customers' },
   { label: 'Inquiries', href: '/admin/inquiries' },
+  { label: 'Users', href: '/admin/users', adminOnly: true },
 ]
 
-export default function AdminLayout({ children }: AdminLayoutProps) {
+export default async function AdminLayout({ children }: AdminLayoutProps) {
+  const session = await auth()
+
+  const visibleNavItems = allNavItems.filter((item) => {
+  if (item.adminOnly && session?.user?.role !== 'ADMIN') {
+    return false
+  }
+
+  return true
+})
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
       <div className="flex min-h-screen">
         <aside className="w-64 border-r bg-white p-6">
           <div className="mb-8">
             <h2 className="text-xl font-bold">Admin Panel</h2>
-            <p className="mt-1 text-sm text-slate-500">
-              Travel SaaS CRM
+            <p className="mt-1 text-sm text-slate-500">Travel SaaS CRM</p>
+          </div>
+
+          <div className="mb-8 rounded-xl border bg-slate-50 p-4">
+            <p className="text-xs uppercase tracking-wide text-slate-500">
+              Logged in as
+            </p>
+            <p className="mt-1 text-sm font-semibold text-slate-900">
+              {session?.user?.name || 'Admin'}
+            </p>
+            <p className="text-xs text-slate-500">
+              {session?.user?.email}
+            </p>
+            <p className="mt-2 inline-block rounded-full bg-slate-200 px-2 py-1 text-[11px] font-medium text-slate-700">
+              {session?.user?.role}
             </p>
           </div>
 
           <nav className="space-y-2 text-sm">
-            {navItems.map((item) => (
+            {visibleNavItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -36,6 +62,10 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
               </Link>
             ))}
           </nav>
+
+          <div className="mt-8">
+            <LogoutButton />
+          </div>
         </aside>
 
         <main className="flex-1 p-8">

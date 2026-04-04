@@ -1,26 +1,23 @@
-export default function LoginPage() {
+import { auth } from '@/auth'
+import LoginForm from '@/components/auth/LoginForm'
+import { redirect } from 'next/navigation'
+
+export default async function LoginPage() {
+  const session = await auth()
+
+  if (session?.user?.role === 'ADMIN') {
+    redirect('/admin')
+  }
+
   return (
-    <section className="flex min-h-screen items-center justify-center bg-gray-100">
-      <div className="w-full max-w-md rounded bg-white p-6 shadow">
-        <h1 className="text-2xl font-bold">🔐 Login</h1>
+    <section className="flex min-h-screen items-center justify-center bg-slate-100 px-4">
+      <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-sm">
+        <h1 className="text-2xl font-bold text-slate-900">Admin Login</h1>
+        <p className="mt-2 text-sm text-slate-600">
+          Sign in to access the admin dashboard.
+        </p>
 
-        <form className="mt-6 space-y-4">
-          <input
-            type="email"
-            placeholder="Email"
-            className="w-full border px-4 py-2"
-          />
-
-          <input
-            type="password"
-            placeholder="Password"
-            className="w-full border px-4 py-2"
-          />
-
-          <button className="w-full rounded bg-black px-4 py-2 text-white">
-            Login
-          </button>
-        </form>
+        <LoginForm />
       </div>
     </section>
   )
