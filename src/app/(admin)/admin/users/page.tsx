@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { prisma } from '@/lib/prisma'
+import UserStatusToggleButton from '@/components/admin/UserStatusToggleButton'
 
 export default async function AdminUsersPage() {
   const users = await prisma.user.findMany({
@@ -7,12 +8,13 @@ export default async function AdminUsersPage() {
       createdAt: 'desc',
     },
     select: {
-      id: true,
-      name: true,
-      email: true,
-      role: true,
-      createdAt: true,
-    },
+  id: true,
+  name: true,
+  email: true,
+  role: true,
+  isActive: true,
+  createdAt: true,
+},
   })
 
   return (
@@ -60,6 +62,15 @@ export default async function AdminUsersPage() {
                   <th className="px-6 py-4 text-left text-sm font-semibold text-slate-700">
                     Created
                   </th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-slate-700">
+  Action
+</th>
+<th className="px-6 py-4 text-left text-sm font-semibold text-slate-700">
+  Status
+</th>
+<th className="px-6 py-4 text-left text-sm font-semibold text-slate-700">
+  Action
+</th>
                 </tr>
               </thead>
 
@@ -86,6 +97,41 @@ export default async function AdminUsersPage() {
                     <td className="px-6 py-4 text-sm text-slate-600">
                       {user.createdAt.toLocaleDateString()}
                     </td>
+                    <td className="px-6 py-4 text-sm">
+  <Link
+    href={`/admin/users/${user.id}`}
+    className="font-medium text-blue-600 hover:underline"
+  >
+    Edit
+  </Link>
+</td>
+<td className="px-6 py-4 text-sm">
+  <span
+    className={`rounded-full px-3 py-1 text-xs font-medium ${
+      user.isActive
+        ? 'bg-green-100 text-green-700'
+        : 'bg-red-100 text-red-700'
+    }`}
+  >
+    {user.isActive ? 'Active' : 'Inactive'}
+  </span>
+</td>
+
+<td className="px-6 py-4 text-sm">
+  <div className="flex items-center gap-4">
+    <Link
+      href={`/admin/users/${user.id}`}
+      className="font-medium text-blue-600 hover:underline"
+    >
+      Edit
+    </Link>
+
+    <UserStatusToggleButton
+      userId={user.id}
+      isActive={user.isActive}
+    />
+  </div>
+</td>
                   </tr>
                 ))}
               </tbody>
