@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { packageSchema } from '@/lib/validations/package'
+import { revalidatePath } from 'next/cache'
 
 export async function GET() {
   try {
@@ -45,6 +46,8 @@ export async function POST(req: Request) {
         isActive: true,
       },
     })
+
+    revalidatePath('/packages')
 
     return NextResponse.json(newPackage, { status: 201 })
   } catch (error: any) {

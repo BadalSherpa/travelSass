@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { packageSchema } from '@/lib/validations/package'
+import { revalidatePath } from 'next/cache'
 
 export async function PUT(
   req: Request,
@@ -30,6 +31,9 @@ export async function PUT(
         location: body.location || null,
       },
     })
+
+    revalidatePath('/packages')
+    revalidatePath(`/packages/${updatedPackage.slug}`)
 
     return NextResponse.json(updatedPackage)
   } catch (error: any) {
@@ -61,6 +65,8 @@ export async function DELETE(
         id,
       },
     })
+
+    revalidatePath('/packages')
 
     return NextResponse.json({ success: true })
   } catch (error) {

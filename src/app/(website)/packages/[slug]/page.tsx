@@ -2,6 +2,7 @@ import { prisma } from '@/lib/prisma'
 import InquiryForm from '@/components/website/InquiryForm'
 import { notFound } from 'next/navigation'
 import BookingForm from '@/components/website/BookingForm'
+export const dynamic = 'force-dynamic'
 
 type PackageDetailPageProps = {
   params: Promise<{
