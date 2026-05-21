@@ -117,6 +117,20 @@ model PackageTestimonial {
   createdAt DateTime @default(now())
 }
 
+model TeamMember {
+  id          String   @id @default(cuid())
+  name        String
+  designation String
+  imageUrl    String?
+  bio         String
+  motto       String?
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+
 enum UserRole {
   ADMIN
   STAFF

@@ -14,6 +14,7 @@ const allNavItems = [
   { label: 'Customers', href: '/admin/customers' },
   { label: 'Inquiries', href: '/admin/inquiries' },
   { label: 'Users', href: '/admin/users', adminOnly: true },
+  { label: 'Team', href: '/admin/team', adminOnly: true },
 ]
 
 export default async function AdminLayout({ children }: AdminLayoutProps) {
