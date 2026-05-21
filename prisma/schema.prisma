@@ -30,18 +30,24 @@ model Customer {
 }
 
 model Package {
-  id          String    @id @default(cuid())
-  title       String
-  slug        String    @unique
-  description String
-  price       Float
-  duration    String?
-  location    String?
-  isActive    Boolean   @default(true)
-  bookings    Booking[]
-  inquiries   Inquiry[]
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id           String               @id @default(cuid())
+  title        String
+  slug         String               @unique
+  description  String
+  price        Float
+  duration     String?
+  location     String?
+  isActive     Boolean              @default(true)
+  bookings     Booking[]
+  inquiries    Inquiry[]
+
+  gallery      PackageGallery[]
+  itineraries  PackageItinerary[]
+  videos       PackageVideo[]
+  testimonials PackageTestimonial[]
+
+  createdAt    DateTime             @default(now())
+  updatedAt    DateTime             @updatedAt
 }
 
 model Booking {
@@ -69,6 +75,46 @@ model Inquiry {
   package    Package?      @relation(fields: [packageId], references: [id], onDelete: SetNull)
   createdAt  DateTime      @default(now())
   updatedAt  DateTime      @updatedAt
+}
+
+model PackageGallery {
+  id        String   @id @default(cuid())
+  packageId String
+  imageUrl  String
+  title     String?
+  package   Package  @relation(fields: [packageId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+}
+
+model PackageItinerary {
+  id          String   @id @default(cuid())
+  packageId   String
+  day         String
+  title       String
+  description String
+  order       Int      @default(0)
+  package     Package  @relation(fields: [packageId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+}
+
+model PackageVideo {
+  id        String   @id @default(cuid())
+  packageId String
+  title     String
+  videoUrl  String
+  package   Package  @relation(fields: [packageId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+}
+
+model PackageTestimonial {
+  id        String   @id @default(cuid())
+  packageId String
+  name      String
+  message   String
+  imageUrl  String?
+  rating    Int      @default(5)
+  package   Package  @relation(fields: [packageId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
 }
 
 enum UserRole {

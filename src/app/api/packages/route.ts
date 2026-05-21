@@ -35,17 +35,67 @@ export async function POST(req: Request) {
       )
     }
 
+    const getEmbedUrl = (url: string) => {
+  if (url.includes('youtube.com/watch?v=')) {
+    const videoId = url.split('v=')[1]?.split('&')[0]
+    return `https://www.youtube.com/embed/${videoId}`
+  }
+
+  if (url.includes('youtu.be/')) {
+    const videoId = url.split('youtu.be/')[1]?.split('?')[0]
+    return `https://www.youtube.com/embed/${videoId}`
+  }
+
+  return url
+}
+
     const newPackage = await prisma.package.create({
-      data: {
-        title: body.title,
-        slug: body.slug,
-        description: body.description,
-        price: Number(body.price),
-        duration: body.duration || null,
-        location: body.location || null,
-        isActive: true,
-      },
-    })
+  data: {
+    title: body.title,
+    slug: body.slug,
+    description: body.description,
+    price: Number(body.price),
+    duration: body.duration || null,
+    location: body.location || null,
+    isActive: true,
+
+    gallery: body.gallery?.length
+      ? {
+          create: body.gallery.map((image: { imageUrl: string; title?: string }) => ({
+            imageUrl: image.imageUrl,
+            title: image.title || null,
+          })),
+        }
+      : undefined,
+      itineraries: body.itineraries?.length
+  ? {
+      create: body.itineraries.map(
+        (item: {
+          day: string
+          title: string
+          description: string
+          order?: string
+        }) => ({
+          day: item.day,
+          title: item.title,
+          description: item.description,
+          order: Number(item.order || 0),
+        })
+      ),
+    }
+  : undefined,
+  videos: body.videos?.length
+  ? {
+      create: body.videos.map(
+        (video: { title: string; videoUrl: string }) => ({
+          title: video.title,
+          videoUrl: getEmbedUrl(video.videoUrl),
+        })
+      ),
+    }
+  : undefined,
+  },
+})
 
     revalidatePath('/packages')
 

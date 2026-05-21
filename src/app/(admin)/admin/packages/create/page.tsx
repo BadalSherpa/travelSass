@@ -16,6 +16,7 @@ export default function CreatePackagePage() {
       </div>
 
       <PackageForm
+        isCreateMode
         initialValues={{
           title: '',
           slug: '',
@@ -23,6 +24,9 @@ export default function CreatePackagePage() {
           price: '',
           duration: '',
           location: '',
+          gallery: [],
+          itineraries: [],
+          videos: []
         }}
         submitLabel="Create Package"
         onSubmit={async (values) => {

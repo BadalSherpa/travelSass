@@ -24,6 +24,7 @@ export default function EditPackageForm({
 
   return (
     <PackageForm
+     isCreateMode={false}
       initialValues={{
         title: packageData.title,
         slug: packageData.slug,
