@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { FaFacebookF, FaInstagram, FaYoutube, FaWhatsapp } from 'react-icons/fa'
 
 const footerLinks = {
   Explore: [
@@ -42,16 +43,37 @@ export default function Footer() {
               mountain escapes.
             </p>
 
-            <div className="mt-8 flex gap-3">
-              {['IG', 'FB', 'YT'].map((item) => (
-                <button
-                  key={item}
-                  className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] text-sm font-semibold text-slate-300 transition hover:border-white/20 hover:bg-white/[0.08] hover:text-white"
-                >
-                  {item}
-                </button>
-              ))}
-            </div>
+            <div className="flex items-center gap-4 mt-8">
+  <a
+    href="#"
+    className="group flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-slate-300 transition hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.08] hover:text-white"
+  >
+    <FaFacebookF className="h-5 w-5" />
+  </a>
+
+  <a
+    href="#"
+    className="group flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-slate-300 transition hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.08] hover:text-white"
+  >
+    <FaInstagram className="h-5 w-5" />
+  </a>
+
+  <a
+    href="#"
+    className="group flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-slate-300 transition hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.08] hover:text-white"
+  >
+    <FaYoutube className="h-5 w-5" />
+  </a>
+
+  <a
+  href="https://wa.me/919999999999?text=Hey%20I%20am%20interested%20in%20exploring%20packages%20from%20Yatri%20Adventures"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="group flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-slate-300 transition hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.08] hover:text-white"
+>
+  <FaWhatsapp className="h-5 w-5" />
+</a>
+</div>
           </div>
 
           {Object.entries(footerLinks).map(([title, links]) => (

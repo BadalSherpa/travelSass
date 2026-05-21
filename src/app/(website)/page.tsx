@@ -5,11 +5,19 @@ export const dynamic = 'force-dynamic'
 
 export default async function HomePage() {
   
-  const [featuredPackages, topTestimonials] = await Promise.all([
+const [featuredPackages, topTestimonials, latestVideos] = await Promise.all([
   prisma.package.findMany({
     where: { isActive: true },
     orderBy: { createdAt: 'desc' },
     take: 3,
+    include: {
+      gallery: {
+        take: 1,
+        orderBy: {
+          createdAt: 'asc',
+        },
+      },
+    },
   }),
 
   prisma.packageTestimonial.findMany({
@@ -17,6 +25,21 @@ export default async function HomePage() {
       { rating: 'desc' },
       { createdAt: 'desc' },
     ],
+    take: 3,
+    include: {
+      package: {
+        select: {
+          title: true,
+          slug: true,
+        },
+      },
+    },
+  }),
+
+  prisma.packageVideo.findMany({
+    orderBy: {
+      createdAt: 'desc',
+    },
     take: 3,
     include: {
       package: {
@@ -104,34 +127,72 @@ export default async function HomePage() {
             </Link>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-3">
-            {featuredPackages.map((pkg) => (
-              <Link
-                key={pkg.id}
-                href={`/packages/${pkg.slug}`}
-                className="group rounded-3xl border bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
-              >
-                <div className="mb-5 h-48 rounded-2xl bg-gradient-to-br from-slate-900 to-sky-700" />
+         {featuredPackages.length === 0 ? (
+  <div className="rounded-[2rem] border border-slate-200 bg-slate-50 p-10 text-center text-slate-500">
+    Featured packages will appear here once added from admin.
+  </div>
+) : (
+  <div className="grid gap-8 lg:grid-cols-3">
+    {featuredPackages.map((pkg) => {
+      const imageUrl = pkg.gallery[0]?.imageUrl
 
-                <p className="text-sm font-medium text-sky-700">
-                  {pkg.location}
-                </p>
+      return (
+        <Link
+          key={pkg.id}
+          href={`/packages/${pkg.slug}`}
+          className="group relative overflow-hidden rounded-[2.5rem] bg-slate-950 shadow-[0_20px_80px_rgba(15,23,42,0.18)] transition duration-500 hover:-translate-y-2 hover:shadow-[0_30px_100px_rgba(15,23,42,0.28)]"
+        >
+          <div className="relative h-[420px] overflow-hidden">
+            {imageUrl ? (
+              <img
+                src={imageUrl}
+                alt={pkg.title}
+                className="h-full w-full object-cover transition duration-700 group-hover:scale-110"
+              />
+            ) : (
+              <div className="h-full w-full bg-gradient-to-br from-slate-900 via-slate-700 to-sky-900" />
+            )}
 
-                <h3 className="mt-2 text-2xl font-bold text-slate-950">
-                  {pkg.title}
-                </h3>
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-transparent" />
 
-                <p className="mt-3 line-clamp-3 text-sm leading-6 text-slate-600">
-                  {pkg.description}
-                </p>
+            <div className="absolute left-6 top-6 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white backdrop-blur-xl">
+              {pkg.location || 'Travel'}
+            </div>
 
-                <div className="mt-6 flex items-center justify-between">
-                  <span className="text-sm text-slate-500">{pkg.duration}</span>
-                  <span className="text-xl font-black">₹{pkg.price}</span>
+            <div className="absolute bottom-0 left-0 right-0 p-7">
+              <p className="text-sm font-medium text-slate-300">
+                {pkg.duration || 'Flexible Duration'}
+              </p>
+
+              <h3 className="mt-3 text-3xl font-black leading-tight text-white">
+                {pkg.title}
+              </h3>
+
+              <p className="mt-4 line-clamp-2 text-sm leading-6 text-slate-300">
+                {pkg.description}
+              </p>
+
+              <div className="mt-7 flex items-end justify-between gap-4">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-400">
+                    Starting From
+                  </p>
+                  <p className="mt-1 text-3xl font-black text-white">
+                    ₹{pkg.price}
+                  </p>
                 </div>
-              </Link>
-            ))}
+
+                <span className="rounded-full bg-white px-5 py-3 text-sm font-bold text-slate-950 transition group-hover:bg-slate-200">
+                  Explore
+                </span>
+              </div>
+            </div>
           </div>
+        </Link>
+      )
+    })}
+  </div>
+)}
         </div>
       </section>
 
@@ -146,26 +207,46 @@ export default async function HomePage() {
             </h2>
           </div>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {[1, 2, 3].map((item) => (
-              <div
-                key={item}
-                className="rounded-3xl border border-white/10 bg-white/5 p-4"
-              >
-                <div className="flex h-56 items-center justify-center rounded-2xl bg-slate-900">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white text-slate-950">
-                    ▶
-                  </div>
-                </div>
-                <h3 className="mt-5 text-xl font-bold text-white">
-                  Mountain Journey #{item}
-                </h3>
-                <p className="mt-2 text-sm text-slate-400">
-                  A short travel video placeholder for destination highlights.
-                </p>
-              </div>
-            ))}
-          </div>
+          {latestVideos.length === 0 ? (
+  <div className="mt-10 rounded-[2rem] border border-white/10 bg-white/[0.04] p-10 text-center text-slate-400">
+    Travel videos will appear here once added from admin.
+  </div>
+) : (
+  <div className="mt-10 grid gap-7 md:grid-cols-3">
+    {latestVideos.map((video) => (
+      <div
+        key={video.id}
+        className="group overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/[0.04] p-4 shadow-2xl shadow-black/20 transition duration-500 hover:-translate-y-2 hover:border-white/20 hover:bg-white/[0.07]"
+      >
+        <div className="aspect-video overflow-hidden rounded-[2rem] bg-black">
+          <iframe
+            src={video.videoUrl}
+            title={video.title}
+            className="h-full w-full"
+            allowFullScreen
+          />
+        </div>
+
+        <div className="p-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-sky-400">
+            Travel Story
+          </p>
+
+          <h3 className="mt-3 text-xl font-black text-white">
+            {video.title}
+          </h3>
+
+          <a
+            href={`/packages/${video.package.slug}`}
+            className="mt-4 inline-flex text-sm font-semibold text-slate-300 transition hover:text-white"
+          >
+            {video.package.title} →
+          </a>
+        </div>
+      </div>
+    ))}
+  </div>
+)}
         </div>
       </section>
 
