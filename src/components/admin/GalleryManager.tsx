@@ -114,7 +114,7 @@ export default function GalleryManager({
           value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
           placeholder="Image URL"
-          className="rounded-2xl border border-slate-300 px-5 py-3 outline-none"
+          className="premium-input"
           required
         />
 
@@ -123,7 +123,7 @@ export default function GalleryManager({
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Image title"
-          className="rounded-2xl border border-slate-300 px-5 py-3 outline-none"
+          className="premium-input"
         />
 
         <button

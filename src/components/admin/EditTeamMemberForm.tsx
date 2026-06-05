@@ -103,7 +103,7 @@ export default function EditTeamMemberForm({
           onChange={(e) =>
             setForm((prev) => ({ ...prev, name: e.target.value }))
           }
-          className="rounded-2xl border border-slate-300 px-5 py-3 outline-none"
+          className="premium-input"
           required
         />
 
@@ -115,7 +115,7 @@ export default function EditTeamMemberForm({
               designation: e.target.value,
             }))
           }
-          className="rounded-2xl border border-slate-300 px-5 py-3 outline-none"
+          className="premium-input"
           required
         />
 
@@ -125,7 +125,7 @@ export default function EditTeamMemberForm({
           onChange={(e) =>
             setForm((prev) => ({ ...prev, imageUrl: e.target.value }))
           }
-          className="rounded-2xl border border-slate-300 px-5 py-3 outline-none"
+          className="premium-input"
           placeholder="Image URL"
         />
 
@@ -135,7 +135,7 @@ export default function EditTeamMemberForm({
           onChange={(e) =>
             setForm((prev) => ({ ...prev, order: e.target.value }))
           }
-          className="rounded-2xl border border-slate-300 px-5 py-3 outline-none"
+          className="premium-input"
           placeholder="Order"
         />
       </div>
@@ -178,7 +178,7 @@ export default function EditTeamMemberForm({
         <button
           type="submit"
           disabled={isSubmitting}
-          className="rounded-2xl bg-slate-950 px-6 py-3 font-semibold text-white"
+          className="premium-button"
         >
           {isSubmitting ? 'Saving...' : 'Update Member'}
         </button>
@@ -186,7 +186,7 @@ export default function EditTeamMemberForm({
         <button
           type="button"
           onClick={handleDelete}
-          className="rounded-2xl border border-red-200 px-6 py-3 font-semibold text-red-600 hover:bg-red-50"
+         className="premium-danger-button"
         >
           Delete Member
         </button>

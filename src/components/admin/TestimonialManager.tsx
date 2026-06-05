@@ -107,7 +107,7 @@ export default function TestimonialManager({
               setForm((prev) => ({ ...prev, name: e.target.value }))
             }
             placeholder="Guest name"
-            className="rounded-2xl border border-slate-300 px-5 py-3 outline-none"
+            className="premium-input"
             required
           />
 
@@ -116,7 +116,7 @@ export default function TestimonialManager({
             onChange={(e) =>
               setForm((prev) => ({ ...prev, rating: e.target.value }))
             }
-            className="rounded-2xl border border-slate-300 px-5 py-3 outline-none"
+            className="premium-input"
           >
             <option value="5">5 Stars</option>
             <option value="4">4 Stars</option>

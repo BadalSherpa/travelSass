@@ -70,7 +70,7 @@ export default function LoginForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full rounded-lg bg-slate-900 px-5 py-3 text-white disabled:opacity-60"
+        className="w-full admin-button disabled:opacity-60"
       >
         {isSubmitting ? 'Signing in...' : 'Login'}
       </button>

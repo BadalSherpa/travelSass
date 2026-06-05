@@ -105,7 +105,7 @@ export default function ItineraryManager({
             value={form.day}
             onChange={(e) => setForm((prev) => ({ ...prev, day: e.target.value }))}
             placeholder="Day 1"
-            className="rounded-2xl border border-slate-300 px-5 py-3 outline-none"
+            className="premium-input"
             required
           />
 
@@ -113,7 +113,7 @@ export default function ItineraryManager({
             value={form.title}
             onChange={(e) => setForm((prev) => ({ ...prev, title: e.target.value }))}
             placeholder="Arrival & Local Welcome"
-            className="rounded-2xl border border-slate-300 px-5 py-3 outline-none"
+            className="premium-input"
             required
           />
 
@@ -122,7 +122,7 @@ export default function ItineraryManager({
             value={form.order}
             onChange={(e) => setForm((prev) => ({ ...prev, order: e.target.value }))}
             placeholder="Order"
-            className="rounded-2xl border border-slate-300 px-5 py-3 outline-none"
+            className="premium-input"
           />
         </div>
 

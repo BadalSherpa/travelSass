@@ -200,7 +200,7 @@ const removeVideo = (index: number) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-6 rounded-2xl border bg-white p-6 shadow-sm"
+      className="space-y-6 admin-card"
     >
       <div>
         <label className="mb-2 block text-sm font-medium text-slate-700">
@@ -211,7 +211,7 @@ const removeVideo = (index: number) => {
           name="title"
           value={form.title}
           onChange={handleChange}
-          className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none"
+          className="w-full admin-input"
           required
         />
       </div>
@@ -238,7 +238,7 @@ const removeVideo = (index: number) => {
           value={form.description}
           onChange={handleChange}
           rows={5}
-          className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none"
+          className="w-full admin-input"
           required
         />
       </div>
@@ -253,7 +253,7 @@ const removeVideo = (index: number) => {
             name="price"
             value={form.price}
             onChange={handleChange}
-            className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none"
+            className="w-full admin-input"
             required
           />
         </div>
@@ -267,7 +267,7 @@ const removeVideo = (index: number) => {
             name="duration"
             value={form.duration}
             onChange={handleChange}
-            className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none"
+            className="w-full admin-input"
           />
         </div>
 
@@ -280,7 +280,7 @@ const removeVideo = (index: number) => {
             name="location"
             value={form.location}
             onChange={handleChange}
-            className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none"
+            className="w-full admin-input"
           />
         </div>
       </div>
@@ -300,7 +300,7 @@ const removeVideo = (index: number) => {
       value={galleryImageUrl}
       onChange={(e) => setGalleryImageUrl(e.target.value)}
       placeholder="Image URL"
-      className="rounded-2xl border border-slate-300 px-5 py-3 outline-none"
+      className="premium-input"
     />
 
     <input
@@ -308,7 +308,7 @@ const removeVideo = (index: number) => {
       value={galleryTitle}
       onChange={(e) => setGalleryTitle(e.target.value)}
       placeholder="Image title"
-      className="rounded-2xl border border-slate-300 px-5 py-3 outline-none"
+      className="premium-input"
     />
 
     <button
@@ -375,7 +375,7 @@ const removeVideo = (index: number) => {
           }))
         }
         placeholder="Day 1"
-        className="rounded-2xl border border-slate-300 px-5 py-3 outline-none"
+        className="premium-input"
       />
 
       <input
@@ -387,7 +387,7 @@ const removeVideo = (index: number) => {
           }))
         }
         placeholder="Arrival & Welcome"
-        className="rounded-2xl border border-slate-300 px-5 py-3 outline-none"
+        className="premium-input"
       />
 
       <input
@@ -400,7 +400,7 @@ const removeVideo = (index: number) => {
           }))
         }
         placeholder="Order"
-        className="rounded-2xl border border-slate-300 px-5 py-3 outline-none"
+        className="premium-input"
       />
     </div>
 
@@ -476,7 +476,7 @@ const removeVideo = (index: number) => {
         setVideoForm((prev) => ({ ...prev, title: e.target.value }))
       }
       placeholder="Video title"
-      className="rounded-2xl border border-slate-300 px-5 py-3 outline-none"
+      className="premium-input"
     />
 
     <input
@@ -486,7 +486,7 @@ const removeVideo = (index: number) => {
         setVideoForm((prev) => ({ ...prev, videoUrl: e.target.value }))
       }
       placeholder="YouTube URL"
-      className="rounded-2xl border border-slate-300 px-5 py-3 outline-none"
+      className="premium-input"
     />
 
     <button
@@ -543,7 +543,7 @@ const removeVideo = (index: number) => {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="rounded-lg bg-slate-900 px-5 py-3 text-white disabled:opacity-60"
+        className="admin-button disabled:opacity-60"
       >
         {isSubmitting ? 'Saving...' : submitLabel}
       </button>

@@ -65,7 +65,7 @@ export default function CreateUserPage() {
 
       <form
         onSubmit={handleSubmit}
-        className="space-y-6 rounded-2xl border bg-white p-6 shadow-sm"
+        className="space-y-6 admin-card"
       >
         <div>
           <label className="mb-2 block text-sm font-medium text-slate-700">
@@ -77,7 +77,7 @@ export default function CreateUserPage() {
             onChange={(e) =>
               setForm((prev) => ({ ...prev, name: e.target.value }))
             }
-            className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none"
+            className="w-full admin-input"
             placeholder="Enter full name"
             required
           />
@@ -93,7 +93,7 @@ export default function CreateUserPage() {
             onChange={(e) =>
               setForm((prev) => ({ ...prev, email: e.target.value }))
             }
-            className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none"
+            className="w-full admin-input"
             placeholder="Enter email address"
             required
           />
@@ -109,7 +109,7 @@ export default function CreateUserPage() {
             onChange={(e) =>
               setForm((prev) => ({ ...prev, password: e.target.value }))
             }
-            className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none"
+            className="w-full admin-input"
             placeholder="Enter password"
             required
           />
@@ -124,7 +124,7 @@ export default function CreateUserPage() {
             onChange={(e) =>
               setForm((prev) => ({ ...prev, role: e.target.value }))
             }
-            className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none"
+            className="w-full admin-input"
           >
             <option value="STAFF">STAFF</option>
             <option value="ADMIN">ADMIN</option>
@@ -142,7 +142,7 @@ export default function CreateUserPage() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="rounded-lg bg-slate-900 px-5 py-3 text-white disabled:opacity-60"
+          className="admin-button disabled:opacity-60"
         >
           {isSubmitting ? 'Creating...' : 'Create User'}
         </button>

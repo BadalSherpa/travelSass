@@ -28,7 +28,7 @@ export default async function InquiryDetailPage({
 
   return (
     <section className="space-y-8">
-      <div className="rounded-2xl border bg-white p-6 shadow-sm">
+      <div className="admin-card">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h1 className="text-3xl font-bold text-slate-900">
@@ -47,7 +47,7 @@ export default async function InquiryDetailPage({
       </div>
 
       <div className="grid gap-8 lg:grid-cols-2">
-        <div className="rounded-2xl border bg-white p-6 shadow-sm">
+        <div className="admin-card">
           <h2 className="text-xl font-semibold text-slate-900">
             Customer Information
           </h2>
@@ -82,7 +82,7 @@ export default async function InquiryDetailPage({
           </div>
         </div>
 
-        <div className="rounded-2xl border bg-white p-6 shadow-sm">
+        <div className="admin-card">
           <h2 className="text-xl font-semibold text-slate-900">
             Package Information
           </h2>
@@ -122,7 +122,7 @@ export default async function InquiryDetailPage({
         </div>
       </div>
 
-      <div className="rounded-2xl border bg-white p-6 shadow-sm">
+      <div className="admin-card">
         <h2 className="text-xl font-semibold text-slate-900">Inquiry Message</h2>
         <p className="mt-4 whitespace-pre-line text-slate-700">
           {inquiry.message}

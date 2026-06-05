@@ -80,7 +80,7 @@ export default function InquiryForm({
   }
 
   return (
-    <div className="rounded-2xl border bg-white p-6 shadow-sm">
+    <div className="admin-card">
       <h2 className="text-2xl font-bold text-slate-900">{heading}</h2>
       <p className="mt-2 text-slate-600">
         Share your travel requirements and we’ll get back to you.
@@ -96,7 +96,7 @@ export default function InquiryForm({
             name="name"
             value={form.name}
             onChange={handleChange}
-            className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none"
+            className="w-full admin-input"
             placeholder="Enter your name"
             required
           />
@@ -111,7 +111,7 @@ export default function InquiryForm({
             name="email"
             value={form.email}
             onChange={handleChange}
-            className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none"
+            className="w-full admin-input"
             placeholder="Enter your email"
             required
           />
@@ -126,7 +126,7 @@ export default function InquiryForm({
             name="phone"
             value={form.phone}
             onChange={handleChange}
-            className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none"
+            className="w-full admin-input"
             placeholder="Enter your phone number"
           />
         </div>
@@ -140,7 +140,7 @@ export default function InquiryForm({
             value={form.message}
             onChange={handleChange}
             rows={5}
-            className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none"
+            className="w-full admin-input"
             placeholder="Tell us what you are looking for"
             required
           />
@@ -157,7 +157,7 @@ export default function InquiryForm({
         <button
           type="submit"
           disabled={isSubmitting}
-          className="rounded-lg bg-slate-900 px-5 py-3 text-white disabled:opacity-60"
+          className="admin-button disabled:opacity-60"
         >
           {isSubmitting ? 'Submitting...' : 'Send Inquiry'}
         </button>

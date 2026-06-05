@@ -47,7 +47,7 @@ export default function UserForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-6 rounded-2xl border bg-white p-6 shadow-sm"
+      className="space-y-6 admin-card"
     >
       <div>
         <label className="mb-2 block text-sm font-medium text-slate-700">
@@ -59,7 +59,7 @@ export default function UserForm({
           onChange={(e) =>
             setForm((prev) => ({ ...prev, name: e.target.value }))
           }
-          className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none"
+          className="w-full admin-input"
           required
         />
       </div>
@@ -74,7 +74,7 @@ export default function UserForm({
           onChange={(e) =>
             setForm((prev) => ({ ...prev, email: e.target.value }))
           }
-          className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none"
+          className="w-full admin-input"
           required
         />
       </div>
@@ -91,7 +91,7 @@ export default function UserForm({
               role: e.target.value as 'ADMIN' | 'STAFF',
             }))
           }
-          className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none"
+          className="w-full admin-input"
         >
           <option value="STAFF">STAFF</option>
           <option value="ADMIN">ADMIN</option>
@@ -109,7 +109,7 @@ export default function UserForm({
       <button
         type="submit"
         disabled={isSubmitting}
-        className="rounded-lg bg-slate-900 px-5 py-3 text-white disabled:opacity-60"
+        className="admin-button disabled:opacity-60"
       >
         {isSubmitting ? 'Saving...' : submitLabel}
       </button>

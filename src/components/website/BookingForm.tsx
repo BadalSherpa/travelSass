@@ -82,7 +82,7 @@ export default function BookingForm({
   }
 
   return (
-    <div className="rounded-2xl border bg-white p-6 shadow-sm">
+    <div className="admin-card">
       <h2 className="text-2xl font-bold text-slate-900">Book This Package</h2>
       <p className="mt-2 text-slate-600">
         Submit your booking request and we’ll contact you to confirm details.
@@ -98,7 +98,7 @@ export default function BookingForm({
             name="name"
             value={form.name}
             onChange={handleChange}
-            className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none"
+            className="w-full admin-input"
             placeholder="Enter your name"
             required
           />
@@ -113,7 +113,7 @@ export default function BookingForm({
             name="email"
             value={form.email}
             onChange={handleChange}
-            className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none"
+            className="w-full admin-input"
             placeholder="Enter your email"
             required
           />
@@ -128,7 +128,7 @@ export default function BookingForm({
             name="phone"
             value={form.phone}
             onChange={handleChange}
-            className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none"
+            className="w-full admin-input"
             placeholder="Enter your phone number"
           />
         </div>
@@ -143,7 +143,7 @@ export default function BookingForm({
               name="travelDate"
               value={form.travelDate}
               onChange={handleChange}
-              className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none"
+              className="w-full admin-input"
               required
             />
           </div>
@@ -158,7 +158,7 @@ export default function BookingForm({
               min="1"
               value={form.persons}
               onChange={handleChange}
-              className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none"
+              className="w-full admin-input"
               required
             />
           </div>
@@ -173,7 +173,7 @@ export default function BookingForm({
             value={form.notes}
             onChange={handleChange}
             rows={4}
-            className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none"
+            className="w-full admin-input"
             placeholder="Any special preferences or questions"
           />
         </div>
@@ -189,7 +189,7 @@ export default function BookingForm({
         <button
           type="submit"
           disabled={isSubmitting}
-          className="rounded-lg bg-slate-900 px-5 py-3 text-white disabled:opacity-60"
+          className="admin-button disabled:opacity-60"
         >
           {isSubmitting ? 'Submitting...' : 'Submit Booking'}
         </button>

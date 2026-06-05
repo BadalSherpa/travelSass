@@ -39,7 +39,7 @@ export default async function EditUserPage({ params }: EditUserPageProps) {
       <div className="mt-8 grid gap-8 lg:grid-cols-2">
   <ResetUserPasswordForm userId={user.id} />
 
-  <div className="rounded-2xl border bg-white p-6 shadow-sm">
+  <div className="admin-card">
     <h2 className="text-xl font-semibold text-slate-900">Danger Zone</h2>
     <p className="mt-2 text-sm text-slate-600">
       Delete this user permanently if the account is no longer needed.

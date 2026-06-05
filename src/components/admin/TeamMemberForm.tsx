@@ -58,9 +58,21 @@ export default function TeamMemberForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-[2rem] border bg-white p-6 shadow-sm"
+      className="premium-card p-8"
     >
-      <h2 className="text-2xl font-black text-slate-900">Add Team Member</h2>
+     <div className="mb-8">
+  <p className="text-xs font-bold uppercase tracking-[0.3em] text-sky-600">
+    Team Management
+  </p>
+
+  <h2 className="mt-3 text-4xl font-black tracking-tight text-slate-950">
+    Add Team Member
+  </h2>
+
+  <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-500">
+    Create premium public profiles for founders, guides, and travel experts.
+  </p>
+</div>
 
       <div className="mt-6 grid gap-4 md:grid-cols-2">
         <input
@@ -69,7 +81,7 @@ export default function TeamMemberForm() {
             setForm((prev) => ({ ...prev, name: e.target.value }))
           }
           placeholder="Name"
-          className="rounded-2xl border border-slate-300 px-5 py-3 outline-none"
+          className="premium-input"
           required
         />
 
@@ -79,7 +91,7 @@ export default function TeamMemberForm() {
             setForm((prev) => ({ ...prev, designation: e.target.value }))
           }
           placeholder="Designation"
-          className="rounded-2xl border border-slate-300 px-5 py-3 outline-none"
+          className="premium-input"
           required
         />
 
@@ -90,7 +102,7 @@ export default function TeamMemberForm() {
             setForm((prev) => ({ ...prev, imageUrl: e.target.value }))
           }
           placeholder="Image URL"
-          className="rounded-2xl border border-slate-300 px-5 py-3 outline-none"
+          className="premium-input"
         />
 
         <input
@@ -100,7 +112,7 @@ export default function TeamMemberForm() {
             setForm((prev) => ({ ...prev, order: e.target.value }))
           }
           placeholder="Order"
-          className="rounded-2xl border border-slate-300 px-5 py-3 outline-none"
+          className="premium-input"
         />
       </div>
 
@@ -139,7 +151,7 @@ export default function TeamMemberForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="mt-6 rounded-2xl bg-slate-950 px-6 py-3 font-semibold text-white"
+        className="premium-button mt-6"
       >
         {isSubmitting ? 'Adding...' : 'Add Member'}
       </button>

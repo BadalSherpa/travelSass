@@ -50,7 +50,7 @@ export default function ResetUserPasswordForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-4 rounded-2xl border bg-white p-6 shadow-sm"
+      className="space-y-4 admin-card"
     >
       <h2 className="text-xl font-semibold text-slate-900">Reset Password</h2>
 
@@ -62,7 +62,7 @@ export default function ResetUserPasswordForm({
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none"
+          className="w-full admin-input"
           placeholder="Enter new password"
           required
         />
@@ -79,7 +79,7 @@ export default function ResetUserPasswordForm({
       <button
         type="submit"
         disabled={isSubmitting}
-        className="rounded-lg bg-slate-900 px-5 py-3 text-white disabled:opacity-60"
+        className="admin-button disabled:opacity-60"
       >
         {isSubmitting ? 'Updating...' : 'Reset Password'}
       </button>

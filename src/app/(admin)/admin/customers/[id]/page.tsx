@@ -41,7 +41,7 @@ export default async function CustomerDetailPage({
 
   return (
     <section className="space-y-8">
-      <div className="rounded-2xl border bg-white p-6 shadow-sm">
+      <div className="admin-card">
         <h1 className="text-3xl font-bold text-slate-900">
           {customer.name}
         </h1>
@@ -86,7 +86,7 @@ export default async function CustomerDetailPage({
       </div>
 
       <div className="grid gap-8 lg:grid-cols-2">
-        <div className="rounded-2xl border bg-white p-6 shadow-sm">
+        <div className="admin-card">
           <h2 className="text-xl font-semibold text-slate-900">
             Inquiries
           </h2>
@@ -127,7 +127,7 @@ export default async function CustomerDetailPage({
           )}
         </div>
 
-        <div className="rounded-2xl border bg-white p-6 shadow-sm">
+        <div className="admin-card">
           <h2 className="text-xl font-semibold text-slate-900">
             Bookings
           </h2>

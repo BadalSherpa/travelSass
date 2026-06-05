@@ -89,7 +89,7 @@ export default function VideoManager({
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Video title"
-          className="rounded-2xl border border-slate-300 px-5 py-3 outline-none"
+          className="premium-input"
           required
         />
 
@@ -98,7 +98,7 @@ export default function VideoManager({
           value={videoUrl}
           onChange={(e) => setVideoUrl(e.target.value)}
           placeholder="Embed URL e.g. https://www.youtube.com/embed/VIDEO_ID"
-          className="rounded-2xl border border-slate-300 px-5 py-3 outline-none"
+          className="premium-input"
           required
         />
 
