@@ -103,8 +103,9 @@ export default function Footer() {
 
             <div className="mt-6 space-y-4 text-sm text-slate-400">
               <p>Darjeeling Hills, India</p>
-              <p>hello@travelsaas.com</p>
-              <p>+91 98765 43210</p>
+              <p>yatriadventure@gmail.com</p>
+              <p>+91 9091316662</p>
+              <p>+91 6295235334</p>
             </div>
 
             <div className="mt-8 rounded-3xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-xl">
