@@ -43,7 +43,7 @@ export default function LoginForm() {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full rounded-lg border border-slate-300 px-4 py-3"
+          className="w-full admin-input rounded-lg border border-slate-300 px-4 py-3"
           placeholder="Enter your email"
           required
         />
@@ -57,7 +57,7 @@ export default function LoginForm() {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full rounded-lg border border-slate-300 px-4 py-3"
+          className="w-full admin-input rounded-lg border border-slate-300 px-4 py-3"
           placeholder="Enter your password"
           required
         />
