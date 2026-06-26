@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import Image from "next/image";
 
 const navLinks = [
   { label: 'Home', href: '/' },
@@ -51,20 +52,30 @@ export default function Header() {
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
           <Link href="/" className="group">
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white/10 text-lg font-black text-white backdrop-blur-xl transition group-hover:bg-white/20">
-                T
-              </div>
+          <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
+  <Link href="/" className="group">
+    <div className="flex items-center gap-3">
+      <Image
+        src="/images/yatri-log.jpeg"
+        alt="TravelSaaS Logo"
+        width={40}
+        height={40}
+        className="rounded-2xl transition group-hover:opacity-80"
+      />
+      <div>
+        <h1 className="text-lg font-black tracking-tight text-white">
+          Yatri Adventure
+        </h1>
+        <p className="text-[11px] uppercase tracking-[0.2em] text-slate-400">
+          Live the experience
+        </p>
+      </div>
+    </div>
+  </Link>
 
-              <div>
-                <h1 className="text-lg font-black tracking-tight text-white">
-                  TravelSaaS
-                </h1>
-                <p className="text-[11px] uppercase tracking-[0.2em] text-slate-400">
-                  Explore Beyond
-                </p>
-              </div>
-            </div>
+  {/* ... rest of your nav code remains the same */}
+</div>
+
           </Link>
 
           <nav className="hidden items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 backdrop-blur-xl lg:flex">

@@ -55,6 +55,13 @@ const [featuredPackages, topTestimonials, latestVideos] = await Promise.all([
   return (
     <div className="bg-slate-950">
       <section className="relative overflow-hidden px-4 py-24 sm:py-32">
+        {/* Background Image */}
+  <div
+    className="absolute inset-0 bg-cover bg-center"
+    style={{
+      backgroundImage: "url('/images/yatriadventure-banner.jpeg')",
+    }}
+  />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(56,189,248,0.25),_transparent_35%),radial-gradient(circle_at_bottom_left,_rgba(16,185,129,0.18),_transparent_35%)]" />
 
         <div className="relative mx-auto max-w-7xl">
